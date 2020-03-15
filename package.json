@@ -1,0 +1,19 @@
+{
+  "name": "tasks_api",
+  "version": "1.0.0",
+  "description": "tasks scheduling api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewhingah/tasks_api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewhingah/tasks_api/issues"
+  },
+  "homepage": "https://github.com/andrewhingah/tasks_api#readme"
+}
