@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
-    id: DataTypes.INTEGER,
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     customer_first_name: DataTypes.STRING,
     personnel_first_name: DataTypes.STRING,
     personnel_other_name: DataTypes.STRING,
