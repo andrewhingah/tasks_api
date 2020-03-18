@@ -4,13 +4,7 @@ const localStrategy = require("passport-local").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const db = require("../database/models/index");
 
-const comparePasswords = (hashedPassword, password) => {
-  if (bcrypt.compareSync(password, hashedPassword)) {
-    return true;
-  } else {
-    return false;
-  }
-};
+const bcryptHelpers = require("./bcrypt");
 
 passport.use(
   "login",
@@ -24,11 +18,15 @@ passport.use(
             error: { message: "User not found" }
           });
         }
-        console.log(">>>>>>>");
-        const validate = await comparePasswords(user.password, password);
+        const validate = await bcryptHelpers.comparePasswords(
+          user.password,
+          password
+        );
         if (!validate) {
           return done(null, false, {
-            error: { password: "You have entered an incorrect password" }
+            error: {
+              password: "You have entered an incorrect password"
+            }
           });
         }
         return done(null, user, { message: "Logged in successfully" });
