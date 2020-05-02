@@ -1,15 +1,15 @@
 require("dotenv").config();
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const passport = require("passport");
-const faker = require("faker");
+import express from "express";
+import bodyParser from "body-parser";
+import passport from "passport";
+import faker from "faker";
 const random = require("lodash.random");
 const times = require("lodash.times");
-const cors = require("cors");
-const db = require("./database/models/index");
-const authAPI = require("./routes/login");
-const tasksAPI = require("./routes/tasks");
+import cors from "cors";
+import db from "./database/models/index";
+import authAPI from "./routes/login";
+import tasksAPI from "./routes/tasks";
 
 require("./auth/passport");
 
@@ -52,12 +52,10 @@ db.sequelize.sync().then(() => {
       mpesa: random(1, 10),
       autoplay: random(1, 10),
       comments: "To be reviewed",
-      registration: "Self"
+      registration: "Self",
     }))
   );
   app.listen(5000, () => {
     console.log(`Server is running on port ${port}`);
   });
 });
-
-module.exports = app;

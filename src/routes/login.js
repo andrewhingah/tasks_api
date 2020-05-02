@@ -1,29 +1,29 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
+import express from "express";
+import jwt from "jsonwebtoken";
+import passport from "passport";
 
-const api = express.Router();
+const loginRouter = express.Router();
 
-api.post("/login", async (req, res, next) => {
+loginRouter.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, user, info) => {
     try {
       if (err || !user) {
         return res.status(400).json(info);
       }
-      req.login(user, { session: false }, async error => {
+      req.login(user, { session: false }, async (error) => {
         if (error) return res.status(400).json(error);
         let expiry = Math.floor(Date.now()) + 60 * 60 * 24 * 1000;
         const token = jwt.sign(
           {
             exp: expiry,
-            data: user.phone
+            data: user.phone,
           },
           process.env.SECRETORKEY
         );
         return res.json({
           reset_password: 0,
           access_token: token,
-          expires_in: "24h"
+          expires_in: "24h",
         });
       });
     } catch (error) {
@@ -32,4 +32,4 @@ api.post("/login", async (req, res, next) => {
   })(req, res, next);
 });
 
-module.exports = api;
+export default loginRouter;

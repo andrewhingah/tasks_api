@@ -1,10 +1,9 @@
-const passport = require("passport");
+import passport from 'passport'
 const JwtStrategy = require("passport-jwt").Strategy;
 const localStrategy = require("passport-local").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
-const db = require("../database/models/index");
-
-const bcryptHelpers = require("./bcrypt");
+import db from '../database/models/index'
+import bcryptHelpers from './bcrypt';
 
 passport.use(
   "login",

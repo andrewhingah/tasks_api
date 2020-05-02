@@ -20,7 +20,7 @@ tasks api
 * run `npx sequelize-cli db:seed:all` to add users to db
 
 ### Start server
-* run `nodemon server.js` to start the server
+* run `npm run start:dev` to start the server
 
 # Endpoints
 * api/login
